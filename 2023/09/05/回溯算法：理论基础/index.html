@@ -127,6 +127,68 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -156,7 +218,28 @@
         </header>
 
         <div class="post-content">
-            
+            <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本文介绍回溯算法的基础理论</span><br></pre></td></tr></table></figure>
+
+<h2 id="什么是回溯？"><a href="#什么是回溯？" class="headerlink" title="什么是回溯？"></a>什么是回溯？</h2><p>​	回溯，计算机算法，回溯法也称试探法，它的基本思想是：从问题的一种状态（初始状态）出发，搜索从这种状态出发所能达到的所有“状态”，当一条路走到“尽头”的时候（不能再前进），再后退一步或若干步，从另一种可能“状态”出发，继续搜索，直到所有的“路径”（状态）都试探过了。这种不断“前进”、不断“回溯”寻找解的方法，就称作“回溯法”。（以上说法来自百度百科）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;	回溯是和递归相辅相成的，其实递归函数的下面的部分就是回溯的逻辑</span><br><span class="line">   </span><br><span class="line">&gt;	回溯其实是一种纯暴力的搜索方法</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="回溯算法解决什么样的问题？"><a href="#回溯算法解决什么样的问题？" class="headerlink" title="回溯算法解决什么样的问题？"></a>回溯算法解决什么样的问题？</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、组合问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2、切割问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3、子集问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//4、排列问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//5、棋盘问题</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="如何理解回溯法？"><a href="#如何理解回溯法？" class="headerlink" title="如何理解回溯法？"></a>如何理解回溯法？</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通常回溯法都可以抽象为一棵n叉树</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="C:/Users/dell/AppData/Roaming/Typora/typora-user-images/image-20230905220532776.png" alt="image-20230905220532776"></p>
+<h2 id="回溯法模板"><a href="#回溯法模板" class="headerlink" title="回溯法模板"></a>回溯法模板</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//回溯法模板</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	返回值：void</span></span><br><span class="line"><span class="comment">	函数名：backtracking</span></span><br><span class="line"><span class="comment">	参数：随题目而定</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	void backtracking(参数)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		if(终止条件)</span></span><br><span class="line"><span class="comment">			收集结果	//通常在叶子节点</span></span><br><span class="line"><span class="comment">			return ;</span></span><br><span class="line"><span class="comment">		//单层搜索逻辑	</span></span><br><span class="line"><span class="comment">		for(元素集)	//循环遍历集合里所有的元素</span></span><br><span class="line"><span class="comment">			处理节点</span></span><br><span class="line"><span class="comment">			递归函数</span></span><br><span class="line"><span class="comment">			回溯操作</span></span><br><span class="line"><span class="comment">		return ;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//光说不练假把式，想学好一个算法还是得多刷题！</span></span><br></pre></td></tr></table></figure>
+
+
         </div>
 
         
