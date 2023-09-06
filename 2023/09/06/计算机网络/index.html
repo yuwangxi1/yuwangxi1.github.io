@@ -13,7 +13,7 @@
 
 
 
-<title>Day 1 | Hexo</title>
+<title>计算机网络 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Day 1</h1>
+            <h1 class="post-title">计算机网络</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 4, 2023&nbsp;&nbsp;22:55:02</a>
+                        Date: <a href="#">September 6, 2023&nbsp;&nbsp;16:25:24</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/blog1/">blog1</a>
+                                <a href="/categories/%E5%9B%9B%E5%A4%A7%E4%BB%B6/">四大件</a>
                             
                         </span>
                     
@@ -218,21 +218,26 @@
         </header>
 
         <div class="post-content">
-            <h3 id="1-This-is-a-blog-Test"><a href="#1-This-is-a-blog-Test" class="headerlink" title="1. This is a blog Test"></a>1. This is a blog Test</h3><ul>
-<li>First</li>
-<li>Second</li>
-</ul>
-<hr>
-<h3 id="2-Show-Text"><a href="#2-Show-Text" class="headerlink" title="2. Show Text"></a>2. Show Text</h3><ul>
-<li><p><strong>这是加粗</strong></p>
-<blockquote>
-<p><em>这是斜体</em></p>
-</blockquote>
+            <h1 id="第一章-计算机网络体系结构"><a href="#第一章-计算机网络体系结构" class="headerlink" title="第一章 计算机网络体系结构"></a>第一章 计算机网络体系结构</h1><h2 id="考点："><a href="#考点：" class="headerlink" title="考点："></a>考点：</h2><p>​	（1）计算机网络概述<br>​			 1、计算机网络的概念、组成、功能与分类；<br>​			 2、计算机网络的性能指标（计算题）；</p>
+<p>​	（2）计算机网络体系结构与参考模型<br>​			 1、计算机网络分层结构；<br>​			 2、计算机网络协议、接口、服务的概念；<br>​			 3、ISO&#x2F;OSI参考模型和TCP&#x2F;IP模型</p>
+<h2 id="第一节：计算机网络概述"><a href="#第一节：计算机网络概述" class="headerlink" title="第一节：计算机网络概述"></a>第一节：计算机网络概述</h2><p>本节导语：需要记忆内容简单并且量小，计算题也相对简单，属于非重点章节（多记忆即可，并不需要太多思考）</p>
+<h3 id="计算机网络的概念"><a href="#计算机网络的概念" class="headerlink" title="计算机网络的概念"></a>计算机网络的概念</h3><p>计算机网络是一个将分散的、具有独立功能的计算机系统，通过通信设备和线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。简而言之，计算机网络就是一些互连的、自治的计算机系统的集合。</p>
+<p><em>互连：通过链路互联互通</em>		<em>自治：无主从关系</em></p>
+<p><strong>计算机网络可以被看作一整个蜘蛛网，其中丝线的交点为计算机系统，通过这些通信设备和线路进行连接，最后由一些完善的软件实现数据通信。</strong></p>
+<h3 id="计算机网络的组成"><a href="#计算机网络的组成" class="headerlink" title="计算机网络的组成"></a>计算机网络的组成</h3><p>从不同的角度，可以将计算机网络分为许多类：</p>
+<ul>
+<li><p>组成部分</p>
+<p>由 硬件、软件、协议组成</p>
+<p>硬件主要由主机（也称端系统）、通信链路（如双绞线、光纤）、交换设备（如路由器、交换机等）和通信处理器（如网卡）等组成。</p>
+<p>软件主要包括各种实现资源共享的软件和方便用户使用的各种工具软件（如网络操作系统、邮件收发程序、FTP程序、聊天程序等）。软件部分多属于应用层。</p>
+<p>协议是计算机网络的核心，如同交通规则制约汽车驾驶一样，协议规定了网络传输数据时所遵循的规范。</p>
+</li>
+<li><p>工作方式</p>
+<p>分为边缘部分和核心部分</p>
+<p>边缘部分由所有连接到因特网上、供用户直接使用的主机组成，用来进行通信（如传输数据、音频和视频）和资源共享；</p>
+<p>核心部分由大量的网络和连接这些网络的路由器组成，它为边缘部分提供连通性和交换服务；</p>
 </li>
 </ul>
-<h3 id="3-tag2"><a href="#3-tag2" class="headerlink" title="3. tag2"></a>3. tag2</h3><h2 id="第一次搭建博客纪念"><a href="#第一次搭建博客纪念" class="headerlink" title="第一次搭建博客纪念"></a>第一次搭建博客纪念</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比较喜欢代码块 所以使用代码块来写比较重要的东西</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*现在是2023年9月4日 23:28</span></span><br><span class="line"><span class="comment">两个小时前花了接近两个小时才完成了个人博客的搭建，由于技术问题，前端三件套中只学了HTML和CSS，没学JS，</span></span><br><span class="line"><span class="comment">导致现在不能自己写自己的网站，用的是别人的框架和主题完成的博客，甚至有些功能我自己都不会用，算是现在比较遗憾的点吧。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">不管怎么样，博客算是正式搭建完毕了，终于有一个能真正记录自己所学所知的随写网站了。之前学的东西都写在了自己的笔记软件上，但是感觉不如写在自己的博客更加正式，今天算是完成了一个小心愿。我认为，对于一个学习计算机的学生来说，写博客是重要的、不可替代的、不能停止的。博客可以记录自己的所思所想，还能记录自己学过什么东西，现在学的很多东西基本都忘了。比如：HTML、CSS、Linux、MySQL、C、C++、Git。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">关于自己的博客，应该会写很多东西，大学期间应该不会大量发布博客，只会记录自己的算法题的思考和作答，以及竞赛中学到的东西，比如CF、AtCoder、力扣周赛、牛客竞赛。这些竞赛中学的知识和解法都是需要认真记忆的，在平时有空也可以翻出自己的博客进行学习，这是便利且重要的。</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">记录每次做题后所做的补题，并且要记录今后的学习路线以及目标，并且会记录自己的一些能让自己感到开心的成就用来激励自己继续学习</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>名不显时心不朽，再挑灯火看文章</strong><br>        <em>活到老，学到老</em></p>
 
         </div>
 
@@ -247,7 +252,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/09/04/Day-1/">http://example.com/2023/09/04/Day-1/</a></span>
+                        <span><a href="http://example.com/2023/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">http://example.com/2023/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a></span>
                     </p>
                 
                 
@@ -271,7 +276,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/test/"># test</a>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"># 计算机网络</a>
                     
                         
                 </span>
@@ -284,8 +289,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/05/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">回溯算法：理论基础</a>
             
+            <a class="next" rel="next" href="/2023/09/05/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98/">回溯算法：组合问题</a>
             
         </section>
 
