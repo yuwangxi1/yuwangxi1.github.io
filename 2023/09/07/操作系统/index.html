@@ -13,7 +13,7 @@
 
 
 
-<title>回溯算法：组合问题（剪枝优化） | Hexo</title>
+<title>操作系统 | Hexo</title>
 
 
 
@@ -286,21 +286,21 @@ i()
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">回溯算法：组合问题（剪枝优化）</h1>
+            <h1 class="post-title">操作系统</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 6, 2023&nbsp;&nbsp;19:10:17</a>
+                        Date: <a href="#">September 7, 2023&nbsp;&nbsp;17:33:06</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Algorithm/">Algorithm</a>
+                                <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                             
                         </span>
                     
@@ -309,16 +309,46 @@ i()
         </header>
 
         <div class="post-content">
-            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//本题为组合问题的一种优化方式，称为剪枝优化，意思就是将多余的子树剪掉。通常在递归中的循环范围做文章</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="题目作答："><a href="#题目作答：" class="headerlink" title="题目作答："></a>题目作答：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> startIndex)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(vec.<span class="built_in">size</span>() == k)</span><br><span class="line">        &#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(vec);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = startIndex; i &lt;= (n - (k - vec.<span class="built_in">size</span>()) + <span class="number">1</span>); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vec.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="built_in">backtracking</span>(n, k, i + <span class="number">1</span>);</span><br><span class="line">            vec.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="type">int</span> n, <span class="type">int</span> k)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">backtracking</span>(n, k, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="剪枝优化的思路："><a href="#剪枝优化的思路：" class="headerlink" title="剪枝优化的思路："></a>剪枝优化的思路：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	剪枝优化的基本方法就是在递归的for循环的范围做文章。</span></span><br><span class="line"><span class="comment">	比如本题中，如果n = 4， k = 4的话，显然，只有1234这一种组合符合要求。</span></span><br><span class="line"><span class="comment">	不进行剪枝优化之前，当我们搜到1234这个数组时，也就是到了终止条件，</span></span><br><span class="line"><span class="comment">	将该数组放入结果集中，返回上一层，下一个指令退出循环，继续放回上一层，</span></span><br><span class="line"><span class="comment">	一直返回到数组为12该取4，此时进入不了循环继续退出，继续返回，一直到</span></span><br><span class="line"><span class="comment">	数组为1取3再进行下面的递归，会发现直到取完也不会进行终止，会通过最后的return</span></span><br><span class="line"><span class="comment">	进行返回，一直持续下去。</span></span><br><span class="line"><span class="comment">	可以看出这期间有许多的分支是不需要的，我们要将他们剪去。n - (k - vec.size()) + 1，</span></span><br><span class="line"><span class="comment">	先看k - vec.size()指的是还需多少个数字组成最终答案集的元素，n - (k - vec.size())</span></span><br><span class="line"><span class="comment">	指的是是否足够进行遍历，如果为0说明恰好足够，此时 + 1进行操作。n - (k - vec.size()) + 1</span></span><br><span class="line"><span class="comment">	代表最多从哪个数字开始遍历</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
+            <h1 id="第一章：计算机系统概述"><a href="#第一章：计算机系统概述" class="headerlink" title="第一章：计算机系统概述"></a>第一章：计算机系统概述</h1><h2 id="考点："><a href="#考点：" class="headerlink" title="考点："></a>考点：</h2><ul>
+<li><p>操作系统的基本概念</p>
+</li>
+<li><p>操作系统的发展历程</p>
+</li>
+<li><p>程序运行环境</p>
+<p>CPU运行模式：内核模式与用户模式；</p>
+<p>中断和异常的处理；系统调用；</p>
+<p>程序的链接与装入；程序运行时内存映像与地址空间；</p>
+</li>
+<li><p>操作系统结构</p>
+<p>分层、模块化、宏内核、微内核、外核</p>
+</li>
+<li><p>操作系统引导</p>
+</li>
+<li><p>虚拟机</p>
+</li>
+</ul>
+<h2 id="1-1-操作系统的基本概念"><a href="#1-1-操作系统的基本概念" class="headerlink" title="1.1 操作系统的基本概念"></a>1.1 操作系统的基本概念</h2><p>硬件是计算机系统的身体，而软件是计算机系统的灵魂，作为软件核心的操作系统，已与现代计算机系统密不可分、融为一体。计算机系统自下而上可大致分为4部分：硬件、软件、操作系统、应用程序和用户。操作系统是系统资源的管理者，向上层提供方便易用的服务，是最接近硬件的一层软件。</p>
+<h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><ul>
+<li><p>并发</p>
+<p>操作系统的并发性是指计算机系统中同时存在多个运行的程序，因此它具有处理和调度多个程序同时执行的能力。在操作系统中，引入进程的目的是使程序能并发执行。在多道程序环境下，一段时间内，宏观上有多道程序在同时执行，而在每一个时刻，单处理机环境下实际仅能有一道程序执行，因此微观上这些程序仍是分时交替执行的操作系统的并发性是通过分时实现的。</p>
+<p>注意：并行性是指系统具有同时进行运算或操作的特性，在同一时刻能完成两种或两种以上的工作。并行性需要有相关硬件的支持，如流水线或多处理机硬件环境。</p>
+</li>
+<li><p>共享</p>
+<p>资源共享即共享，是指系统中的资源可供内存中多个并发执行的进程共同使用。</p>
+<p>共享可分为以下两种资源共享方式：<br>1、互斥共享方式</p>
+<p>简单来说就是当有人在使用该资源时，其他人必须等待此人使用完毕才可以进行使用。这种资源被称为临界资源。</p>
+<p>2、同时访问方式</p>
+<p>这里的同时通常是宏观上的，而在微观上，这些进程可能是交替地对该资源进行访问即“分时共享”地。</p>
+</li>
+<li><p>虚拟</p>
+<p>虚拟是指把一个物理上的实体变为若干逻辑上的对应物。操作系统的虚拟技术可归纳为：时分复用技术，如处理器的分时共享；空分复用技术，如虚拟存储器。</p>
+<p>利用多道程序设计技术把一个物理上的CPU虚拟为多个逻辑上的CPU，称为虚拟处理器。</p>
+</li>
+<li><p>异步</p>
+<p>多道程序环境允许多个程序并发执行，但由于资源有限，进程的执行并不是一贯到底的，而是走走停停的，它以不可预知的速度向前推进，这就是进程的异步性。然而，只要运行环境相同，操作系统就须保证多次运行进程后都能获得相同的结果。</p>
+</li>
+</ul>
+<p><strong>并发和共享是操作系统两个最基本的特征，两者之间互为存在的条件：1）资源共享是以程序的并发为条件的，若系统不允许程序并发执行，则自然不存在资源共享问题；2）若系统不能对资源共享实施有效的管理，则必将影响到程序的并发执行，甚至根本无法并发执行。</strong></p>
 
         </div>
 
@@ -328,7 +358,7 @@ i()
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88%E5%89%AA%E6%9E%9D%E4%BC%98%E5%8C%96%EF%BC%89/">http://example.com/2023/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88%E5%89%AA%E6%9E%9D%E4%BC%98%E5%8C%96%EF%BC%89/</a></span>
+                        <span><a href="http://example.com/2023/09/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">http://example.com/2023/09/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</a></span>
                     </p>
                 
                 
@@ -352,7 +382,7 @@ i()
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"># 回溯算法</a>
+                        <a href="/tags/%E5%9B%9B%E5%A4%A7%E4%BB%B6/"># 四大件</a>
                     
                         
                 </span>
@@ -365,10 +395,8 @@ i()
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%81%8F%E5%AE%9E%E6%88%98%E7%89%88%EF%BC%89/">数据结构（偏实战版）</a>
             
-            
-            <a class="next" rel="next" href="/2023/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%AC%AC%E4%B8%80%E7%AB%A0/">计算机网络</a>
+            <a class="next" rel="next" href="/2023/09/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%81%8F%E5%AE%9E%E6%88%98%E7%89%88%EF%BC%89/">数据结构（偏实战版）</a>
             
         </section>
 
