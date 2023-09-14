@@ -13,7 +13,7 @@
 
 
 
-<title>回溯算法：组合问题（剪枝优化） | Hexo</title>
+<title>计算机组成原理 | Hexo</title>
 
 
 
@@ -286,21 +286,21 @@ i()
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">回溯算法：组合问题（剪枝优化）</h1>
+            <h1 class="post-title">计算机组成原理</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 6, 2023&nbsp;&nbsp;19:10:17</a>
+                        Date: <a href="#">September 14, 2023&nbsp;&nbsp;10:38:23</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Algorithm/">Algorithm</a>
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
                             
                         </span>
                     
@@ -309,16 +309,34 @@ i()
         </header>
 
         <div class="post-content">
-            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//本题为组合问题的一种优化方式，称为剪枝优化，意思就是将多余的子树剪掉。通常在递归中的循环范围做文章</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="题目作答："><a href="#题目作答：" class="headerlink" title="题目作答："></a>题目作答：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> startIndex)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(vec.<span class="built_in">size</span>() == k)</span><br><span class="line">        &#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(vec);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = startIndex; i &lt;= (n - (k - vec.<span class="built_in">size</span>()) + <span class="number">1</span>); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vec.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="built_in">backtracking</span>(n, k, i + <span class="number">1</span>);</span><br><span class="line">            vec.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="type">int</span> n, <span class="type">int</span> k)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">backtracking</span>(n, k, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="剪枝优化的思路："><a href="#剪枝优化的思路：" class="headerlink" title="剪枝优化的思路："></a>剪枝优化的思路：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	剪枝优化的基本方法就是在递归的for循环的范围做文章。</span></span><br><span class="line"><span class="comment">	比如本题中，如果n = 4， k = 4的话，显然，只有1234这一种组合符合要求。</span></span><br><span class="line"><span class="comment">	不进行剪枝优化之前，当我们搜到1234这个数组时，也就是到了终止条件，</span></span><br><span class="line"><span class="comment">	将该数组放入结果集中，返回上一层，下一个指令退出循环，继续放回上一层，</span></span><br><span class="line"><span class="comment">	一直返回到数组为12该取4，此时进入不了循环继续退出，继续返回，一直到</span></span><br><span class="line"><span class="comment">	数组为1取3再进行下面的递归，会发现直到取完也不会进行终止，会通过最后的return</span></span><br><span class="line"><span class="comment">	进行返回，一直持续下去。</span></span><br><span class="line"><span class="comment">	可以看出这期间有许多的分支是不需要的，我们要将他们剪去。n - (k - vec.size()) + 1，</span></span><br><span class="line"><span class="comment">	先看k - vec.size()指的是还需多少个数字组成最终答案集的元素，n - (k - vec.size())</span></span><br><span class="line"><span class="comment">	指的是是否足够进行遍历，如果为0说明恰好足够，此时 + 1进行操作。n - (k - vec.size()) + 1</span></span><br><span class="line"><span class="comment">	代表最多从哪个数字开始遍历</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
+            <h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章 计算机系统概述"></a>第一章 计算机系统概述</h1><h2 id="考纲内容"><a href="#考纲内容" class="headerlink" title="考纲内容"></a>考纲内容</h2><ul>
+<li><p>计算机系统层次结构</p>
+<p>计算机系统的基本组成</p>
+<p>计算机硬件的基本组成</p>
+<p>计算机软件和硬件的关系</p>
+<p>计算机系统的工作原理：“存储程序”方式、高级语言程序与机器语言程序的转换、程序和指令的执行过程</p>
+</li>
+<li><p>计算机性能指标</p>
+<p>吞吐量、响应时间、CPU时钟周期、主频、CPI、CPU执行时间</p>
+<p>MIPS、MFLOPS、GFLOPS、TFLOPS、PFLOPS、EFLOPS、ZFLOPS</p>
+</li>
+</ul>
+<h2 id="1-1计算机系统层次结构"><a href="#1-1计算机系统层次结构" class="headerlink" title="1.1	计算机系统层次结构"></a>1.1	计算机系统层次结构</h2><h3 id="1-1-1计算机系统的组成"><a href="#1-1-1计算机系统的组成" class="headerlink" title="1.1.1	计算机系统的组成"></a>1.1.1	计算机系统的组成</h3><p>硬件系统和软件系统共同构成了一个完整的计算机系统。硬件是指有形的物理设备，是计算机系统中实际物理装置的总称。软件是指在硬件上运行的程序和相关的数据及文档。对于某一功能来说，其既可以用软件实现，又可以用硬件实现，则称为软硬件在逻辑功能上是等价的。Eg.对于乘法运算，可以设计一个专门的硬件电路实现乘法运算，也可以用软件的方式，执行多次加法运算来实现。</p>
+<h3 id="1-1-2计算机硬件"><a href="#1-1-2计算机硬件" class="headerlink" title="1.1.2	计算机硬件"></a>1.1.2	计算机硬件</h3><h4 id="1、冯诺依曼机基本思想"><a href="#1、冯诺依曼机基本思想" class="headerlink" title="1、冯诺依曼机基本思想"></a>1、冯诺依曼机基本思想</h4><p>以“存储程序”的概念为基础的各类计算机通称为冯诺依曼机，其特点为：</p>
+<ul>
+<li>采用“存储程序”的工作方式</li>
+<li>计算机硬件系统由运算器、存储器、控制器、输入设备和输出设备5大部件组成。</li>
+<li>指令和数据以同等地位存储在存储器中，形式上没有区别，但计算机应能区分它们。</li>
+<li>指令和数据均用二进制代码表示。指令由操作码和地址码组成，操作码指出操作的类型，地址码指出操作数的地址</li>
+</ul>
+<p><strong>“存储程序”的基本思想是：将事先编制好的程序和原始数据送入主存后才能执行，一旦程序被启动执行，就无须操作人员的干预，计算机会自动逐条执行指令，直至程序执行结束。</strong></p>
+<h4 id="2、计算机的功能部件"><a href="#2、计算机的功能部件" class="headerlink" title="2、计算机的功能部件"></a>2、计算机的功能部件</h4><p>1）输入设备</p>
+<p>主要功能是将程序和数据以机器所能识别和接受的信息形式输入计算机。最常用也最基本的输入设备是键盘，此外还有鼠标、扫描仪、摄像机等。</p>
+<p>2）输出设备</p>
+<p>主要功能是将计算机处理的结果以人们所能接受的形式或其他系统所要求的信息形式输出。最常用、最基本的输出设备是显示器、打印机。输出&#x2F;输出设备（简称IO设备）是计算机与外界联系的桥梁，是计算机中不可缺少的重要组成部分。</p>
+<p>3）存储器</p>
+<p>存储器可分为 主存储器（又称内存储器） 和 辅助存储器（又称外存储器）。CPU所能直接访问的存储器是主存储器。辅助存储器用于帮助主存储器记忆更多的信息，辅助存储器中的信息必须调入主存后，才能为CPU所访问。</p>
+<p>主存储器</p>
 
         </div>
 
@@ -328,7 +346,7 @@ i()
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88%E5%89%AA%E6%9E%9D%E4%BC%98%E5%8C%96%EF%BC%89/">http://example.com/2023/09/06/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88%E5%89%AA%E6%9E%9D%E4%BC%98%E5%8C%96%EF%BC%89/</a></span>
+                        <span><a href="http://example.com/2023/09/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">http://example.com/2023/09/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</a></span>
                     </p>
                 
                 
@@ -352,7 +370,7 @@ i()
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"># 回溯算法</a>
+                        <a href="/tags/%E5%9B%9B%E5%A4%A7%E4%BB%B6/"># 四大件</a>
                     
                         
                 </span>
@@ -365,10 +383,8 @@ i()
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8801%E7%89%88%EF%BC%89/">数据结构（01版）</a>
             
-            
-            <a class="next" rel="next" href="/2023/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            <a class="next" rel="next" href="/2023/09/13/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E3%80%8B/">《算法竞赛入门经典》</a>
             
         </section>
 
