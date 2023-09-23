@@ -13,7 +13,7 @@
 
 
 
-<title>计算机组成原理 | Hexo</title>
+<title>动态规划：理论基础 | Hexo</title>
 
 
 
@@ -286,21 +286,21 @@ i()
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">计算机组成原理</h1>
+            <h1 class="post-title">动态规划：理论基础</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 14, 2023&nbsp;&nbsp;10:38:23</a>
+                        Date: <a href="#">September 23, 2023&nbsp;&nbsp;20:40:44</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+                                <a href="/categories/Algorithm/">Algorithm</a>
                             
                         </span>
                     
@@ -309,34 +309,25 @@ i()
         </header>
 
         <div class="post-content">
-            <h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章 计算机系统概述"></a>第一章 计算机系统概述</h1><h2 id="考纲内容"><a href="#考纲内容" class="headerlink" title="考纲内容"></a>考纲内容</h2><ul>
-<li><p>计算机系统层次结构</p>
-<p>计算机系统的基本组成</p>
-<p>计算机硬件的基本组成</p>
-<p>计算机软件和硬件的关系</p>
-<p>计算机系统的工作原理：“存储程序”方式、高级语言程序与机器语言程序的转换、程序和指令的执行过程</p>
+            <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本文来介绍动态规划的理论基础</span><br></pre></td></tr></table></figure>
+
+<h1 id="什么是动态规划？"><a href="#什么是动态规划？" class="headerlink" title="什么是动态规划？"></a>什么是动态规划？</h1><p>动态规划是非常强大的建模工具。基本上，一个多阶段的决策问题，如果无法把他至少写成一个动态规划模型，那很可能你也无法找到办法求解他。近几年来，动态规划的题目已经相当受关注，蓝桥杯甚至从“暴力杯”变成了如今的“动态规划杯”。可见其分量之深厚，所以学好动态规划是算法学习的必经之路。</p>
+<h1 id="动态规划的常见问题"><a href="#动态规划的常见问题" class="headerlink" title="动态规划的常见问题"></a>动态规划的常见问题</h1><ul>
+<li><p>动归基础</p>
+<p>斐波那契额数列、爬楼梯…</p>
 </li>
-<li><p>计算机性能指标</p>
-<p>吞吐量、响应时间、CPU时钟周期、主频、CPI、CPU执行时间</p>
-<p>MIPS、MFLOPS、GFLOPS、TFLOPS、PFLOPS、EFLOPS、ZFLOPS</p>
+<li><p>背包问题</p>
+</li>
+<li><p>打家劫舍</p>
+</li>
+<li><p>股票问题</p>
+</li>
+<li><p>子序列问题</p>
+<p>最长递增子序列、最长连续递增子序列、编辑距离问题….</p>
+</li>
+<li><p>DP</p>
 </li>
 </ul>
-<h2 id="1-1计算机系统层次结构"><a href="#1-1计算机系统层次结构" class="headerlink" title="1.1	计算机系统层次结构"></a>1.1	计算机系统层次结构</h2><h3 id="1-1-1计算机系统的组成"><a href="#1-1-1计算机系统的组成" class="headerlink" title="1.1.1	计算机系统的组成"></a>1.1.1	计算机系统的组成</h3><p>硬件系统和软件系统共同构成了一个完整的计算机系统。硬件是指有形的物理设备，是计算机系统中实际物理装置的总称。软件是指在硬件上运行的程序和相关的数据及文档。对于某一功能来说，其既可以用软件实现，又可以用硬件实现，则称为软硬件在逻辑功能上是等价的。Eg.对于乘法运算，可以设计一个专门的硬件电路实现乘法运算，也可以用软件的方式，执行多次加法运算来实现。</p>
-<h3 id="1-1-2计算机硬件"><a href="#1-1-2计算机硬件" class="headerlink" title="1.1.2	计算机硬件"></a>1.1.2	计算机硬件</h3><h4 id="1、冯诺依曼机基本思想"><a href="#1、冯诺依曼机基本思想" class="headerlink" title="1、冯诺依曼机基本思想"></a>1、冯诺依曼机基本思想</h4><p>以“存储程序”的概念为基础的各类计算机通称为冯诺依曼机，其特点为：</p>
-<ul>
-<li>采用“存储程序”的工作方式</li>
-<li>计算机硬件系统由运算器、存储器、控制器、输入设备和输出设备5大部件组成。</li>
-<li>指令和数据以同等地位存储在存储器中，形式上没有区别，但计算机应能区分它们。</li>
-<li>指令和数据均用二进制代码表示。指令由操作码和地址码组成，操作码指出操作的类型，地址码指出操作数的地址</li>
-</ul>
-<p><strong>“存储程序”的基本思想是：将事先编制好的程序和原始数据送入主存后才能执行，一旦程序被启动执行，就无须操作人员的干预，计算机会自动逐条执行指令，直至程序执行结束。</strong></p>
-<h4 id="2、计算机的功能部件"><a href="#2、计算机的功能部件" class="headerlink" title="2、计算机的功能部件"></a>2、计算机的功能部件</h4><p>1）输入设备</p>
-<p>主要功能是将程序和数据以机器所能识别和接受的信息形式输入计算机。最常用也最基本的输入设备是键盘，此外还有鼠标、扫描仪、摄像机等。</p>
-<p>2）输出设备</p>
-<p>主要功能是将计算机处理的结果以人们所能接受的形式或其他系统所要求的信息形式输出。最常用、最基本的输出设备是显示器、打印机。输出&#x2F;输出设备（简称IO设备）是计算机与外界联系的桥梁，是计算机中不可缺少的重要组成部分。</p>
-<p>3）存储器</p>
-<p>存储器可分为 主存储器（又称内存储器） 和 辅助存储器（又称外存储器）。CPU所能直接访问的存储器是主存储器。辅助存储器用于帮助主存储器记忆更多的信息，辅助存储器中的信息必须调入主存后，才能为CPU所访问。</p>
-<p>主存储器</p>
 
         </div>
 
@@ -346,7 +337,7 @@ i()
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/09/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">http://example.com/2023/09/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</a></span>
+                        <span><a href="http://example.com/2023/09/23/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">http://example.com/2023/09/23/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/</a></span>
                     </p>
                 
                 
@@ -370,7 +361,7 @@ i()
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%9B%9B%E5%A4%A7%E4%BB%B6/"># 四大件</a>
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"># 动态规划</a>
                     
                         
                 </span>
@@ -383,10 +374,8 @@ i()
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/23/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">动态规划：理论基础</a>
             
-            
-            <a class="next" rel="next" href="/2023/09/13/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E3%80%8B/">《算法竞赛入门经典》</a>
+            <a class="next" rel="next" href="/2023/09/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
             
         </section>
 
